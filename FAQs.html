@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <link rel="stylesheet" href="FAQs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="#">Home</a> &gt; <span class="current">Help</span>
+        </nav>
+        
+        <main>
+            <div class="content">
+                <h1>Help</h1>
+                
+                <div class="faq-section">
+                    <div class="faq-header">
+                        <h2>Popular questions</h2>
+                        <div class="dropdown">
+                            <button class="dropdown-btn">Open all <span class="arrow">▼</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What is a Secure Key?</h3>
+                                <span class="toggle-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>A Secure Key is a device or digital tool that generates unique codes to help you securely access your online banking. It provides an additional layer of security for your account.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How do I report fraud?</h3>
+                                <span class="toggle-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>If you suspect fraud on your account, please contact our fraud team immediately at our dedicated fraud hotline. You can also report suspicious activity through your online banking portal or mobile app.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How to download statements?</h3>
+                                <span class="toggle-icon">▼</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can download your statements by logging into your online banking, navigating to the accounts section, selecting the account you want statements for, and clicking on the "Download" or "Export" option next to the statement period.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="illustration">
+                <div class="chat-bubble question-mark">
+                    <span>?</span>
+                </div>
+                <div class="chat-bubble speech-left"></div>
+                <div class="chat-bubble speech-right"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Toggle FAQ answers
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                const icon = question.querySelector('.toggle-icon');
+                icon.textContent = item.classList.contains('active') ? '▲' : '▼';
+            });
+        });
+
+        // Open/close all FAQs
+        document.querySelector('.dropdown-btn').addEventListener('click', () => {
+            const items = document.querySelectorAll('.faq-item');
+            const isAnyCollapsed = Array.from(items).some(item => !item.classList.contains('active'));
+            
+            items.forEach(item => {
+                if (isAnyCollapsed) {
+                    item.classList.add('active');
+                    item.querySelector('.toggle-icon').textContent = '▲';
+                } else {
+                    item.classList.remove('active');
+                    item.querySelector('.toggle-icon').textContent = '▼';
+                }
+            });
+            
+            const dropdownArrow = document.querySelector('.dropdown-btn .arrow');
+            dropdownArrow.textContent = isAnyCollapsed ? '▲' : '▼';
+            document.querySelector('.dropdown-btn').textContent = isAnyCollapsed ? 'Close all ▲' : 'Open all ▼';
+        });
+    </script>
+</body>
+</html>
